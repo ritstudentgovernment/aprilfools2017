@@ -1,0 +1,45 @@
+<!DOCTYPE html>  
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Flappy Farid</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="phaser.min.js"></script>
+		<style>
+
+			html,body{
+
+				margin: 0;
+				text-align: center;
+				background-color: #efefef;
+				background-image: url("assets/background.png");
+
+
+			}
+			#gameview{
+				display: inline-block;
+				position: relative;
+				height: 480px;
+				width: 480px;
+				max-width: 480px;
+				background-color: red;
+			}
+
+			@font-face {
+			    font-family: "flappyFont";
+			    src: url(assets/04B_19__.TTF);
+			}
+
+			h1{
+				font-family: "flappyFont";
+				color: #f8b505;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="gameview"></div>
+		<h1>Flappy Farid</h1>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
