@@ -104,18 +104,10 @@ var mainState = {
 	    this.pipes.forEach(function(p){
 	        p.body.velocity.x = 0;
 	    }, this);
-
-	    if(Number(this.labelScore.text) > highScore){
-
-	    	var name = prompt("New High Score! Enter your name:", "");
-	    }
 	},
 };
 
 var winW = document.getElementById("gameview").offsetWidth;
-
-var highScore = 5;
-
 var game = new Phaser.Game(winW, 480, Phaser.AUTO, 'gameview');
 game.state.add('main', mainState);
 game.state.start('main');
