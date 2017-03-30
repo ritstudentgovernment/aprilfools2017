@@ -1,10 +1,39 @@
+function randomize(list){
+	var number_elements = list.length;
+	var random = Math.floor(Math.random() * number_elements);
+	return list[random];	
+}
+
 var mainState = {
 	preload: function(){
 
-		game.load.image('bird', 'assets/bird.png');
+		var user = randomize([
+			
+								{
+									"name" : "Farid",
+									"sound": "assets/farid.wav",
+									"image": "assets/farid.png"
+								},
+								{
+									"name" : "Ritchie",
+									"sound": "assets/tiger-roar1.wav",
+									"image": "assets/tiger.png"
+								},
+								{
+									"name" : "Jeff",
+									"sound": "assets/jeff.wav",
+									"image": "assets/jeff.png"
+								}
+								
+							]);
+
+		game.load.image('bird', user.image);
 		game.load.image('pipe', 'assets/pipe.png');
-		game.load.audio('jump', 'assets/wii.wav');
+		game.load.audio('jump', user.sound);
 		game.load.audio('punch', 'assets/punch.wav');
+		
+		document.getElementById("name").innerHTML = user.name;
+		
 	},
 	create: function(){
 
