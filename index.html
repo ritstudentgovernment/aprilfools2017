@@ -1,33 +1,43 @@
-<!---=========================================
-Simple sidebar-scroll template.
-
-Scrollable gallery with picture title and
-picture description. Responsive for mobile.
-
-Created by: Omar De La Hoz (oed7416@rit.edu)
-Created on: 03/28/17
-============================================-->
+<!DOCTYPE html>  
 <html>
-<head>
-	<title>SG April Fools</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="april.js"></script>
-	<link rel="stylesheet" href="april.css" />
-	<meta name="viewport" content="width=device-width" />
-</head>
-<body>
-	<a href="flappy"><img class="flappy-button" src="assets/flappyfarid.png" /></a>
-	<div id="sidebar">
-		<h1 id="title">Introduction yea yea</h1>
-		<p id="description">Description yea yea</p>
-	</div>
-	<div title="Example Title1" id="picture1" class="image">
-		<img src="http://andreaisbatman.xyz/img/Building.jpg">
-		<p>Testing testing testing description testing yea yea</p>
-	</div>
-	<div title="Example Title2" id="picture2" class="image">
-		<img src="http://andreaisbatman.xyz/img/Batman.jpg">
-		<p>yea yea Testing testing testing description testing</p>
-	</div>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Flappy Farid</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="phaser.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<style>
+
+			html,body{
+
+				margin: 0;
+				text-align: center;
+				background-color: #efefef;
+				background-image: url("assets/background.png");
+			}
+			#gameview{
+				display: inline-block;
+				position: relative;
+				height: 480px;
+				width: 100%;
+				max-width: 480px;
+				background-color: red;
+			}
+
+			@font-face {
+			    font-family: "flappyFont";
+			    src: url(assets/04B_19__.TTF);
+			}
+
+			h1{
+				font-family: "flappyFont";
+				color: #f8b505;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="gameview"></div>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
 </html>
