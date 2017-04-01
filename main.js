@@ -36,19 +36,34 @@ var mainState = {
 		var user = [
 			{
 				"name" : "Farid",
-				"sound": "assets/farid.wav",
+				"sound": "assets/farid.mp3",
 				"image": "assets/farid.png"
 			},
 			{
 				"name" : "Ritchie",
-				"sound": "assets/tiger-roar1.wav",
+				"sound": "assets/tiger.mp3",
 				"image": "assets/tiger.png"
 			},
 			{
 				"name" : "Jeff",
-				"sound": "assets/jeff.wav",
+				"sound": "assets/jeff.mp3",
 				"image": "assets/jeff.png"
-			}						
+			},
+			{
+				"name" : "Kathy",
+				"sound": "assets/kathy.mp3",
+				"image": "assets/kathy.png"
+			},
+			{
+				"name" : "Amar",
+				"sound": "assets/amar.mp3",
+				"image": "assets/amar.png"
+			},
+			{
+				"name" : "Andrea",
+				"sound": "assets/andrea.mp3",
+				"image": "assets/andrea.png"
+			}				
 		];
 
 		// Bird assets.
@@ -57,11 +72,14 @@ var mainState = {
 
 		// Pipe assets.
 		game.load.image('pipe', 'assets/pipe1.png');
-		game.load.audio('punch', 'assets/punch.wav');
+		game.load.audio('punch', 'assets/punch.mp3');
 
 		// GameOver assets
 		game.load.image('restart', 'assets/replay.png');
-		game.load.image('gameOver', 'assets/scoreboard.png');		
+		game.load.image('gameOver', 'assets/scoreboard.png');
+
+		game.load.audio('song', 'assets/song.mp3');
+
 	},
 	create: function(){
 
@@ -89,6 +107,10 @@ var mainState = {
 		var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     	spaceKey.onDown.add(this.jump, this);
     	game.input.onDown.add(this.jump, this);
+
+    	this.song = game.add.audio('song');
+    	this.song.loop = true;
+    	this.song.play();
 	},
 	update: function(){
 
@@ -119,7 +141,7 @@ var mainState = {
 	restartGame: function() {
 
 	    // Start the 'main' state, which restarts the game
-	    game.state.start('main', true, false, this.birdNum);
+	    this.hitPipe();
 	},
 	addOnePipe: function(x, y) {
 	    // Create a pipe at the position x and y
@@ -163,6 +185,7 @@ var mainState = {
 	    this.bird.alive = false;
 
 	    // Play punch sound
+	    this.song.stop();
 	    this.punchSound.play()
 
 	    // Prevent new pipes from appearing
@@ -185,6 +208,10 @@ var startState = {
 		game.load.image('bird1','assets/farid.png');
 		game.load.image('bird2','assets/tiger.png');
 		game.load.image('bird3','assets/jeff.png');
+		game.load.image('bird4','assets/kathy.png');
+		game.load.image('bird5','assets/amar.png');
+		game.load.image('bird6','assets/andrea.png');
+		game.load.audio('intro', 'assets/intro.mp3');
 	},
 	create: function(){
 
@@ -203,8 +230,16 @@ var startState = {
 		pick.anchor.set(0.5);
 		pick.scale.setTo(0.75,0.75);
 
+		// Create intro song
+		var introSong = game.add.audio('intro');
+		introSong.loop = true;
+		introSong.play();
 
-		var pickPlayer = function(playerNum){game.state.start('main', true, false, playerNum)};
+
+		var pickPlayer = function(playerNum){
+			introSong.stop();
+			game.state.start('main', true, false, playerNum);
+		};
 		var center = game.world.centerX;
 
 		// Farid bird.
@@ -221,6 +256,23 @@ var startState = {
 		var bird3 = game.add.button(center + 100, 300, 'bird3', function(){pickPlayer(2)}, mainState, this, 2, 1, 0);
 		bird3.anchor.set(0.5);
 		bird3.scale.setTo(1,1);
+
+		// Kathy bird.
+		var bird4 = game.add.button(center - 100, 380, 'bird4', function(){pickPlayer(3)}, mainState, this, 2, 1, 0);
+		bird4.anchor.set(0.5);
+		bird4.scale.setTo(1,1);
+
+		// Amar Bird
+		var bird5 = game.add.button(center, 380, 'bird5', function(){pickPlayer(4)}, mainState, this, 2, 1, 0);
+		bird5.anchor.set(0.5);
+		bird5.scale.setTo(1,1);
+
+		// Andrea Bird
+		var bird6 = game.add.button(center + 100, 380, 'bird6', function(){pickPlayer(5)}, mainState, this, 2, 1, 0);
+		bird6.anchor.set(0.5);
+		bird6.scale.setTo(1,1);
+
+		
 	},
 	addOnePipe: function(x, y) {
 	    // Create a pipe at the position x and y
